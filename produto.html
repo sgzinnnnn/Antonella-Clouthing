@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Produto | Antonella Clothing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header class="main-header">
+    <nav class="navbar container">
+      <div class="logo">Antonella Clothing</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#produtos">Produtos</a></li>
+        <li><a href="index.html#sobre">Sobre Nós</a></li>
+        <li><a href="https://wa.me/5516992226122" target="_blank" rel="noopener">Contato</a></li>
+      </ul>
+      <div class="nav-icons">
+        <button id="cart-icon" aria-label="Carrinho">🛒 <span id="cart-badge" class="badge">0</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Detalhe do Produto -->
+  <main class="container" id="product-page">
+    <div id="product-detail" class="product-detail"></div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="main-footer">
+    <div class="footer-bottom container">
+      <p>&copy; 2025 Antonella Clothing. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    // Pega o ID do produto pela URL e renderiza os detalhes
+    const params = new URLSearchParams(window.location.search);
+    const productId = parseInt(params.get("id"));
+    renderProductPage(productId);
+  </script>
+</body>
+</html>

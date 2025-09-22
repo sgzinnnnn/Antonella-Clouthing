@@ -1,104 +1,178 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sua Marca de Luxo | Elegância Atemporal</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Antonella Clothing | Elegância Atemporal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="logo">Antonella Clothing</div>
-            <ul class="nav-links">
-                <li><a href="#">Novidades</a></li>
-                <li><a href="#">Coleções</a></li>
-                <li><a href="#">Categorias</a></li>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="https://wa.me/5516992226122">Contato</a></li>
-            </ul>
-            <div class="nav-icons">
-                <a href="#">&#128269;</a> <a href="#">&#128100;</a> <a href="#">&#128722;</a> </div>
-        </nav>
-        <div class="hero-section">
-            <div class="hero-content">
-                <h1>Descubra a Elegância que Transcende</h1>
-                <p>Peças exclusivas que combinam design sofisticado e qualidade impecável.</p>
-                <a href="#" class="btn-primary">Ver Coleção</a>
-            </div>
+
+  <!-- Header / Navegação -->
+  <header class="main-header">
+    <nav class="navbar container">
+      <div class="logo">Antonella Clothing</div>
+
+      <ul class="nav-links">
+        <li><a href="#novidades">Novidades</a></li>
+        <li><a href="#colecoes">Coleções</a></li>
+        <li><a href="#categorias">Categorias</a></li>
+        <li><a href="#sobre">Sobre Nós</a></li>
+        <li><a href="https://wa.me/5516992226122" target="_blank" rel="noopener">Contato</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <button id="search-toggle" aria-label="Buscar">🔍</button>
+        <button id="user-btn" aria-label="Perfil">👤</button>
+        <button id="cart-icon" aria-label="Carrinho">🛒 <span id="cart-badge" class="badge">0</span></button>
+      </div>
+    </nav>
+
+    <!-- Barra de busca (aparece em mobile / quando clicada) -->
+    <div class="container search-row" id="searchRow">
+      <input id="globalSearch" type="text" placeholder="Buscar: vestido, blazer, bolsa..." autocomplete="off"/>
+      <div id="suggestions" class="suggestions hidden"></div>
+    </div>
+
+    <!-- Banner Principal -->
+    <div class="hero-section" role="img" aria-label="Banner principal - coleção">
+      <div class="hero-content container">
+        <h1>Descubra a Elegância que Transcende</h1>
+        <p>Peças exclusivas que combinam design sofisticado e qualidade impecável.</p>
+        <a href="#produtos" class="btn-primary">Ver Coleção</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Carrinho de Compras (popup) -->
+  <aside class="cart-popup" id="cart-popup" aria-hidden="true">
+    <div class="cart-header">
+      <h2>Carrinho de Compras</h2>
+      <button id="close-cart" class="btn-close" aria-label="Fechar carrinho">×</button>
+    </div>
+
+    <div id="cart-items" class="cart-items"></div>
+
+    <div class="cart-footer">
+      <div class="shipping">
+        <label for="cep">Calcular Frete</label>
+        <input type="text" id="cep" placeholder="Digite seu CEP (ex: 01450-000)" />
+        <button type="button" class="btn-secondary" id="calculate-shipping">Calcular</button>
+        <p id="shipping-cost">Frete: R$ 0,00</p>
+      </div>
+
+      <div class="payment-methods">
+        <label for="payment-method">Método de Pagamento</label>
+        <select id="payment-method">
+          <option value="cartao">Cartão de Crédito</option>
+          <option value="boleto">Boleto Bancário</option>
+          <option value="pix">Pix</option>
+          <option value="mercadopago">Mercado Pago</option>
+        </select>
+      </div>
+
+      <div class="checkout-summary">
+        <p>Total: R$ <span id="cart-total">0,00</span></p>
+        <button type="button" class="btn-primary" id="complete-purchase">Finalizar Compra</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Conteúdo Principal -->
+  <main class="main-content container">
+
+    <!-- Produtos / catálogo -->
+    <section id="produtos" class="products-section">
+      <h2>Produtos</h2>
+
+      <div class="controls">
+        <div class="filters">
+          <button class="filter-btn" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="roupas">Roupas</button>
+          <button class="filter-btn" data-filter="calcados">Calçados</button>
+          <button class="filter-btn" data-filter="acessorios">Acessórios</button>
+
+          <select id="sizeFilter">
+            <option value="">Tamanho</option>
+            <option>PP</option><option>P</option><option>M</option><option>G</option><option>GG</option>
+          </select>
+
+          <select id="colorFilter">
+            <option value="">Cor</option>
+            <option>Floral</option><option>Bege</option><option>Branco</option><option>Rosa</option><option>Caramelo</option>
+          </select>
+
+          <input id="priceMin" type="number" placeholder="Preço mínimo" min="0"/>
+          <input id="priceMax" type="number" placeholder="Preço máximo" min="0"/>
         </div>
-    </header>
 
-    <main class="main-content">
-        <section class="featured-products">
-            <h2>Destaques da Coleção</h2>
-            <div class="product-grid">
-                <div class="product-item">
-                    <img src="images/produto1.jpg" alt="Vestido de Seda Minimalista">
-                    <h3>Vestido de Seda "Pureza"</h3>
-                    <p>R$ 1.250,00</p>
-                    <a href="#" class="btn-secondary">Ver Detalhes</a>
-                </div>
-                <div class="product-item">
-                    <img src="images/produto2.jpg" alt="Blazer de Linho Clássico">
-                    <h3>Blazer de Linho "Herança"</h3>
-                    <p>R$ 980,00</p>
-                    <a href="#" class="btn-secondary">Ver Detalhes</a>
-                </div>
-                <div class="product-item">
-                    <img src="images/produto3.jpg" alt="Saia Plissada Chiffon">
-                    <h3>Saia Plissada "Graciosa"</h3>
-                    <p>R$ 720,00</p>
-                    <a href="#" class="btn-secondary">Ver Detalhes</a>
-                </div>
-                <div class="product-item">
-                    <img src="images/produto4.jpg" alt="Calça Alfaiataria Perfeita">
-                    <h3>Calça Alfaiataria "Conforto Chic"</h3>
-                    <p>R$ 890,00</p>
-                    <a href="#" class="btn-secondary">Ver Detalhes</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="about-us-mini">
-            <h2>Nossa Filosofia</h2>
-            <p>Criamos moda que celebra a feminilidade e a individualidade, com um compromisso inabalável com a qualidade e o design atemporal. Cada peça é uma obra de arte.</p>
-            <a href="#" class="btn-primary">Conheça Nossa História</a>
-        </section>
-    </main>
-
-    <footer class="main-footer">
-        <div class="footer-links">
-            <div class="footer-column">
-                <h4>Navegação</h4>
-                <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Coleções</a></li>
-                    <li><a href="#">Novidades</a></li>
-                    <li><a href="#">Promoções</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Atendimento</h4>
-                <ul>
-                    <li><a href="https://wa.me/5516992226122">Fale Conosco</a></li>
-                    <li><a href="https://wa.me/5516992226122">Trocas e Devoluções</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Siga-nos</h4>
-                <div class="social-icons">
-                    <a href="#">&#xf09a;</a> <a href="#">&#xf16d;</a> <a href="#">&#xf099;</a> </div>
-            </div>
+        <div class="sort">
+          <label for="sortSelect">Ordenar</label>
+          <select id="sortSelect">
+            <option value="default">Relevância</option>
+            <option value="price-asc">Preço ↑</option>
+            <option value="price-desc">Preço ↓</option>
+            <option value="rating-desc">Avaliações</option>
+          </select>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Sua Marca de Luxo. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+      </div>
 
-    <script src="script.js"></script>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <!-- Sobre (breve) -->
+    <section id="sobre" class="about-us-mini">
+      <h2>Nossa Filosofia</h2>
+      <p>Criamos moda que celebra a feminilidade e a individualidade, com um compromisso inabalável com a qualidade e o design atemporal. Cada peça é uma obra de arte.</p>
+      <a href="#" class="btn-primary">Conheça Nossa História</a>
+    </section>
+
+  </main>
+
+  <!-- Modal (produto/checkout/login) -->
+  <div id="modalBg" class="modal-bg hidden" role="dialog" aria-modal="true">
+    <div id="modalContent" class="modal-content"></div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="main-footer">
+    <div class="footer-links container">
+      <div class="footer-column">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#novidades">Início</a></li>
+          <li><a href="#colecoes">Coleções</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="https://wa.me/5516992226122">Fale Conosco</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="#" aria-label="WhatsApp">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom container">
+      <p>&copy; 2025 Antonella Clothing. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
