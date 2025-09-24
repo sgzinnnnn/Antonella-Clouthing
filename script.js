@@ -1,13 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --------------------------
-  // Dados iniciais (exemplo)
-  // --------------------------
-  const sampleProducts = [
-    { id:1, title:'Vestido Midi Floral', category:'roupas', price:249.90, stock:6, images:['images/produto1.jpg'], sizes:['P','M','G'], colors:['Floral'], rating:4.5, reviews:[{name:'Mariana', stars:5, text:'Amei a modelagem!'}] },
-    { id:2, title:'Blazer Cropped Bege', category:'roupas', price:349.00, stock:4, images:['images/produto2.jpg'], sizes:['PP','P','M'], colors:['Bege'], rating:4.8, reviews:[] },
-    { id:3, title:'Tênis Branco Minimal', category:'calcados', price:199.90, stock:10, images:['images/produto3.jpg'], sizes:['36','37','38','39'], colors:['Branco'], rating:4.2, reviews:[] },
-    { id:4, title:'Bolsa Tiracolo Couro', category:'acessorios', price:429.50, stock:3, images:['images/produto4.jpg'], sizes:[], colors:['Caramelo'], rating:4.9, reviews:[] }
-  ];
 
   // Estado
   let PRODUCTS = JSON.parse(localStorage.getItem('products')) || sampleProducts;
@@ -189,6 +180,35 @@ function renderProducts(list = PRODUCTS) {
 
       const destLat = parseFloat(geoData[0].lat), destLng = parseFloat(geoData[0].lon);
 
+
+  // Calcular frete automaticamente e no botão
+  if (shippingInput) {
+    // Quando o usuário digitar o CEP
+    let cepTimer;
+    shippingInput.addEventListener('input', (e) => {
+      clearTimeout(cepTimer);
+      cepTimer = setTimeout(() => {
+        const cep = e.target.value.trim();
+        if (cep.length >= 8) {
+          calculateShipping(cep);
+        }
+      }, 600);
+    });
+
+    // Quando clicar no botão Calcular
+    const calcBtn = document.getElementById('calculate-shipping');
+    if (calcBtn) {
+      calcBtn.addEventListener('click', () => {
+        const cep = shippingInput.value.trim();
+        if (cep.length >= 8) {
+          calculateShipping(cep);
+        } else {
+          alert("Digite um CEP válido.");
+        }
+      });
+    }
+  }
+
       // Haversine
       const R = 6371;
       const dLat = (destLat - lojaLat) * Math.PI / 180;
@@ -220,15 +240,19 @@ function renderProducts(list = PRODUCTS) {
   closeCartBtn.addEventListener('click', () => cartPopup.classList.remove('active'));
 
   // Calcular frete ao digitar CEP (com debounce simples)
-  let cepTimer;
-  if(shippingInput) {
-    shippingInput.addEventListener('input', (e) => {
-      clearTimeout(cepTimer);
-      cepTimer = setTimeout(() => {
-        if(e.target.value.trim().length >= 8) calculateShipping(e.target.value.trim());
-      }, 600);
-    });
-  }
+   // Botão "Calcular Frete"
+   const calcBtn = document.getElementById('calculate-shipping');
+   if(calcBtn && shippingInput) {
+     calcBtn.addEventListener('click', () => {
+       const cep = shippingInput.value.trim();
+       if(cep.length >= 8) {
+         calculateShipping(cep);
+       } else {
+         alert("Digite um CEP válido.");
+       }
+     });
+   }
+ 
 
   // Finalizar compra (simulado)
   completePurchaseBtn.addEventListener('click', () => {

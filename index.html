@@ -29,7 +29,7 @@
       </div>
     </nav>
 
-    <!-- Barra de busca (aparece em mobile / quando clicada) -->
+    <!-- Barra de busca -->
     <div class="container search-row" id="searchRow">
       <input id="globalSearch" type="text" placeholder="Buscar: vestido, blazer, bolsa..." autocomplete="off"/>
       <div id="suggestions" class="suggestions hidden"></div>
@@ -45,15 +45,13 @@
     </div>
   </header>
 
-  <!-- Carrinho de Compras (popup) -->
+  <!-- Carrinho -->
   <aside class="cart-popup" id="cart-popup" aria-hidden="true">
     <div class="cart-header">
       <h2>Carrinho de Compras</h2>
       <button id="close-cart" class="btn-close" aria-label="Fechar carrinho">×</button>
     </div>
-
     <div id="cart-items" class="cart-items"></div>
-
     <div class="cart-footer">
       <div class="shipping">
         <label for="cep">Calcular Frete</label>
@@ -61,7 +59,6 @@
         <button type="button" class="btn-secondary" id="calculate-shipping">Calcular</button>
         <p id="shipping-cost">Frete: R$ 0,00</p>
       </div>
-
       <div class="payment-methods">
         <label for="payment-method">Método de Pagamento</label>
         <select id="payment-method">
@@ -71,7 +68,6 @@
           <option value="mercadopago">Mercado Pago</option>
         </select>
       </div>
-
       <div class="checkout-summary">
         <p>Total: R$ <span id="cart-total">0,00</span></p>
         <button type="button" class="btn-primary" id="complete-purchase">Finalizar Compra</button>
@@ -82,7 +78,7 @@
   <!-- Conteúdo Principal -->
   <main class="main-content container">
 
-    <!-- Produtos / catálogo -->
+    <!-- Produtos -->
     <section id="produtos" class="products-section">
       <h2>Produtos</h2>
 
@@ -92,21 +88,17 @@
           <button class="filter-btn" data-filter="roupas">Roupas</button>
           <button class="filter-btn" data-filter="calcados">Calçados</button>
           <button class="filter-btn" data-filter="acessorios">Acessórios</button>
-
           <select id="sizeFilter">
             <option value="">Tamanho</option>
             <option>PP</option><option>P</option><option>M</option><option>G</option><option>GG</option>
           </select>
-
           <select id="colorFilter">
             <option value="">Cor</option>
             <option>Floral</option><option>Bege</option><option>Branco</option><option>Rosa</option><option>Caramelo</option>
           </select>
-
           <input id="priceMin" type="number" placeholder="Preço mínimo" min="0"/>
           <input id="priceMax" type="number" placeholder="Preço máximo" min="0"/>
         </div>
-
         <div class="sort">
           <label for="sortSelect">Ordenar</label>
           <select id="sortSelect">
@@ -118,19 +110,82 @@
         </div>
       </div>
 
-      <div id="productsGrid" class="products-grid"></div>
+      <div id="productsGrid" class="products-grid">
+        <!-- Produto 1 -->
+        <div class="product-card">
+          <a href="produto.html?id=1" class="product-card-link">
+            <img src="images/produto1.jpg" alt="Vestido Midi Floral" />
+            <div class="product-info">
+              <h3>Vestido Midi Floral</h3>
+              <div class="price">R$ 249,90</div>
+              <div class="rating">★★★★☆ <span class="small-text">(1)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="1">Adicionar</button>
+            <a href="produto.html?id=1" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="product-card">
+          <a href="produto.html?id=2" class="product-card-link">
+            <img src="images/produto2.jpg" alt="Blazer Cropped Bege" />
+            <div class="product-info">
+              <h3>Blazer Cropped Bege</h3>
+              <div class="price">R$ 349,00</div>
+              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="2">Adicionar</button>
+            <a href="produto.html?id=2" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="product-card">
+          <a href="produto.html?id=3" class="product-card-link">
+            <img src="images/produto3.jpg" alt="Tênis Branco Minimal" />
+            <div class="product-info">
+              <h3>Tênis Branco Minimal</h3>
+              <div class="price">R$ 199,90</div>
+              <div class="rating">★★★★☆ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="3">Adicionar</button>
+            <a href="produto.html?id=3" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 4 -->
+        <div class="product-card">
+          <a href="produto.html?id=4" class="product-card-link">
+            <img src="images/produto4.jpg" alt="Bolsa Tiracolo Couro" />
+            <div class="product-info">
+              <h3>Bolsa Tiracolo Couro</h3>
+              <div class="price">R$ 429,50</div>
+              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="4">Adicionar</button>
+            <a href="produto.html?id=4" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Sobre (breve) -->
+    <!-- Sobre -->
     <section id="sobre" class="about-us-mini">
       <h2>Nossa Filosofia</h2>
       <p>Criamos moda que celebra a feminilidade e a individualidade, com um compromisso inabalável com a qualidade e o design atemporal. Cada peça é uma obra de arte.</p>
       <a href="#" class="btn-primary">Conheça Nossa História</a>
     </section>
-
   </main>
 
-  <!-- Modal (produto/checkout/login) -->
+  <!-- Modal -->
   <div id="modalBg" class="modal-bg hidden" role="dialog" aria-modal="true">
     <div id="modalContent" class="modal-content"></div>
   </div>
@@ -147,7 +202,6 @@
           <li><a href="#sobre">Sobre</a></li>
         </ul>
       </div>
-
       <div class="footer-column">
         <h4>Atendimento</h4>
         <ul>
@@ -157,17 +211,15 @@
           <li><a href="#">Política de Privacidade</a></li>
         </ul>
       </div>
-
       <div class="footer-column">
         <h4>Siga-nos</h4>
         <div class="social-icons">
           <a href="#" aria-label="Instagram">Instagram</a>
           <a href="#" aria-label="Pinterest">Pinterest</a>
-          <a href="#" aria-label="WhatsApp">WhatsApp</a>
+          <a href="https://wa.me/5516992226122" aria-label="WhatsApp">WhatsApp</a>
         </div>
       </div>
     </div>
-
     <div class="footer-bottom container">
       <p>&copy; 2025 Antonella Clothing. Todos os direitos reservados.</p>
     </div>

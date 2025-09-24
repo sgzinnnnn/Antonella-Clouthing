@@ -1,47 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Produto | Antonella Clothing</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Produto | Antonella Clothing</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .color-option.selected { border-color: #000; }
+    .size-option {
+      display: inline-block;
+      padding: 8px 12px;
+      margin-right: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .size-option.selected {
+      background-color: #b08d57;
+      color: white;
+      border-color: #b08d57;
+    }
+    .product-gallery { display: flex; gap: 10px; margin-top: 15px; }
+    .product-gallery img {
+      width: 60px; height: 60px; object-fit: cover;
+      cursor: pointer; border: 1px solid #ddd;
+    }
+    .product-gallery img.active { border-color: #b08d57; }
+    .review-item { border-bottom: 1px solid #eee; padding: 15px 0; }
+    .review-stars { color: #b08d57; margin-bottom: 5px; }
+  </style>
 </head>
-<body>
-  <!-- Cabeçalho -->
+<body class="bg-gray-50">
   <header class="main-header">
     <nav class="navbar container">
       <div class="logo">Antonella Clothing</div>
-      <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="index.html#produtos">Produtos</a></li>
-        <li><a href="index.html#sobre">Sobre Nós</a></li>
-        <li><a href="https://wa.me/5516992226122" target="_blank" rel="noopener">Contato</a></li>
-      </ul>
-      <div class="nav-icons">
-        <button id="cart-icon" aria-label="Carrinho">🛒 <span id="cart-badge" class="badge">0</span></button>
-      </div>
+      <a href="index.html" class="text-white hover:text-gray-200">← Voltar para a Loja</a>
+      
     </nav>
   </header>
 
-  <!-- Detalhe do Produto -->
-  <main class="container" id="product-page">
-    <div id="product-detail" class="product-detail"></div>
+  <main class="container py-8">
+    <div id="product-detail" class="flex flex-col md:flex-row gap-8 bg-white p-6 rounded-lg shadow-sm">
+      <!-- Detalhes do produto aparecem aqui -->
+    </div>
+
+    <section class="mt-12 bg-white p-6 rounded-lg shadow-sm">
+      <h2 class="text-2xl font-bold mb-6">Avaliações</h2>
+      <div id="reviews-list" class="mb-8"></div>
+      
+      <h3 class="text-xl font-semibold mb-4">Deixe sua avaliação</h3>
+      <form id="review-form" class="space-y-4">
+        <div>
+          <label for="review-name" class="block mb-2">Seu nome</label>
+          <input type="text" id="review-name" class="w-full p-2 border rounded" required>
+        </div>
+        <div>
+          <label for="review-rating" class="block mb-2">Avaliação</label>
+          <select id="review-rating" class="p-2 border rounded" required>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+          </select>
+        </div>
+        <div>
+          <label for="review-text" class="block mb-2">Comentário</label>
+          <textarea id="review-text" rows="4" class="w-full p-2 border rounded" required></textarea>
+        </div>
+        <button type="submit" class="bg-[#b08d57] text-white px-6 py-2 rounded hover:bg-[#9a7b4d] transition">Enviar Avaliação</button>
+      </form>
+    </section>
   </main>
 
-  <!-- Rodapé -->
   <footer class="main-footer">
+    <div class="footer-links container">
+      <div class="footer-column">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#colecoes">Coleções</a></li>
+          <li><a href="index.html#produtos">Produtos</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="https://wa.me/5516992226122">Fale Conosco</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Siga-nos</h4>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="https://wa.me/5516992226122" aria-label="WhatsApp">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-bottom container">
       <p>&copy; 2025 Antonella Clothing. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="script.js"></script>
-  <script>
-    // Pega o ID do produto pela URL e renderiza os detalhes
+  <script src="script.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Pega ID da URL
     const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get("id"));
-    renderProductPage(productId);
-  </script>
+    const productId = Number(params.get("id"));
+
+    // Recupera produtos do localStorage (ou sampleProducts)
+    const PRODUCTS = JSON.parse(localStorage.getItem("products")) || [];
+
+    function renderProductDetails(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) {
+        document.getElementById("product-detail").innerHTML = "<p>Produto não encontrado.</p>";
+        return;
+      }
+
+      const galleryHTML = product.images.map((img, i) => `
+        <img src="${img}" alt="${product.title}" 
+             class="product-gallery-img ${i === 0 ? "active" : ""}"
+             onclick="document.getElementById('main-product-image').src='${img}'" />
+      `).join("");
+
+      const sizeOptionsHTML = product.sizes.map(s => `
+        <div class="size-option" onclick="selectSize(this)">${s}</div>
+      `).join("");
+
+      document.getElementById("product-detail").innerHTML = `
+        <div class="w-full md:w-1/2">
+          <img id="main-product-image" src="${product.images[0]}" alt="${product.title}" class="w-full rounded-lg mb-4" />
+          <div class="product-gallery">${galleryHTML}</div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-6">
+          <h1 class="text-3xl font-bold">${product.title}</h1>
+          <div class="text-2xl font-bold text-[#b08d57]">R$ ${product.price.toFixed(2)}</div>
+          <p>${product.description || ""}</p>
+          ${product.sizes.length ? `
+            <div><h3 class="font-semibold mb-2">Tamanhos</h3><div>${sizeOptionsHTML}</div></div>
+          ` : ""}
+          <div class="pt-4 border-t flex items-center space-x-4">
+            <div class="flex items-center">
+              <button onclick="updateQuantity(-1)" class="px-3 py-1 border rounded-l">-</button>
+              <input type="number" id="quantity" value="1" min="1" max="${product.stock}" class="w-16 text-center border-t border-b">
+              <button onclick="updateQuantity(1)" class="px-3 py-1 border rounded-r">+</button>
+            </div>
+            <button onclick="addToCartById(${product.id})" class="bg-[#b08d57] text-white px-6 py-2 rounded hover:bg-[#9a7b4d] transition">
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    renderProductDetails(productId);
+  });
+
+  function selectSize(el) {
+    document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
+    el.classList.add("selected");
+  }
+
+  function updateQuantity(change) {
+    const input = document.getElementById("quantity");
+    let newValue = parseInt(input.value) + change;
+    if (newValue < 1) newValue = 1;
+    if (newValue > parseInt(input.max)) newValue = parseInt(input.max);
+    input.value = newValue;
+  }
+</script>
+
 </body>
 </html>
