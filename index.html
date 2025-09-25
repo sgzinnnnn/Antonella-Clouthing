@@ -15,11 +15,7 @@
       <div class="logo">Antonella Clothing</div>
 
       <ul class="nav-links">
-        <li><a href="#novidades">Novidades</a></li>
-        <li><a href="#colecoes">Coleções</a></li>
-        <li><a href="#categorias">Categorias</a></li>
-        <li><a href="#sobre">Sobre Nós</a></li>
-        <li><a href="https://wa.me/5516992226122" target="_blank" rel="noopener">Contato</a></li>
+  
       </ul>
 
       <div class="nav-icons">
@@ -44,6 +40,32 @@
       </div>
     </div>
   </header>
+
+ <!-- Modal Login -->
+<div id="loginModal" class="modal-bg hidden" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h2 id="modal-title">Entrar</h2>
+    <form id="loginForm">
+      <div>
+        <label>Email</label>
+        <input type="email" id="loginEmail" required>
+      </div>
+      <div>
+        <label>Senha</label>
+        <input type="password" id="loginPassword" required>
+      </div>
+      <div id="registerFields" class="hidden">
+        <label>Nome</label>
+        <input type="text" id="registerName">
+      </div>
+      <button type="submit" class="btn-primary">Continuar</button>
+    </form>
+    <p id="toggleLogin">Não tem conta? <a href="#">Cadastre-se</a></p>
+    <button id="closeLogin" class="btn-close">×</button>
+  </div>
+</div>
+
+
 
   <!-- Carrinho -->
   <aside class="cart-popup" id="cart-popup" aria-hidden="true">
@@ -120,8 +142,7 @@
             </div>
           </a>
           <div class="actions">
-            <button class="btn-primary add-btn" data-id="1">Adicionar</button>
-            <a href="produto.html?id=1" class="btn-secondary">Ver Detalhes</a>
+      
           </div>
         </div>
 
@@ -135,8 +156,7 @@
             </div>
           </a>
           <div class="actions">
-            <button class="btn-primary add-btn" data-id="2">Adicionar</button>
-            <a href="produto.html?id=2" class="btn-secondary">Ver Detalhes</a>
+           
           </div>
         </div>
 
@@ -150,8 +170,7 @@
             </div>
           </a>
           <div class="actions">
-            <button class="btn-primary add-btn" data-id="3">Adicionar</button>
-            <a href="produto.html?id=3" class="btn-secondary">Ver Detalhes</a>
+          
           </div>
         </div>
 
@@ -165,8 +184,6 @@
             </div>
           </a>
           <div class="actions">
-            <button class="btn-primary add-btn" data-id="4">Adicionar</button>
-            <a href="produto.html?id=4" class="btn-secondary">Ver Detalhes</a>
           </div>
         </div>
       </div>

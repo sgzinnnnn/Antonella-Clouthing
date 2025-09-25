@@ -10,124 +10,86 @@
 <body class="bg-gray-50">
   <header class="main-header">
     <nav class="navbar container">
- <a href="index.html" class="logo">Antonella Clothing</a>
-         <div class="nav-icons">
+      <!-- Logo -->
+      <a href="index.html" class="logo">Antonella Clothing</a>
+
+      <!-- Ícones -->
+      <div class="nav-icons">
         <button id="search-toggle" aria-label="Buscar">🔍</button>
         <button id="user-btn" aria-label="Perfil">👤</button>
-        <button id="cart-icon" aria-label="Carrinho">🛒 <span id="cart-badge" class="badge">0</span></button>
+        <button id="cart-icon" aria-label="Carrinho">
+          🛒 <span id="cart-badge" class="badge">0</span>
+        </button>
       </div>
     </nav>
 
-        <!-- Barra de busca -->
+    <!-- Barra de busca -->
     <div class="container search-row" id="searchRow">
       <input id="globalSearch" type="text" placeholder="Buscar: vestido, blazer, bolsa..." autocomplete="off"/>
       <div id="suggestions" class="suggestions hidden"></div>
     </div>
 
-       <!-- Carrinho -->
-  <aside class="cart-popup" id="cart-popup" aria-hidden="true">
-    <div class="cart-header">
-      <h2>Carrinho de Compras</h2>
-      <button id="close-cart" class="btn-close" aria-label="Fechar carrinho">×</button>
-    </div>
-    <div id="cart-items" class="cart-items"></div>
-    <div class="cart-footer">
-      <div class="shipping">
-        <label for="cep">Calcular Frete</label>
-        <input type="text" id="cep" placeholder="Digite seu CEP (ex: 01450-000)" />
-        <button type="button" class="btn-secondary" id="calculate-shipping">Calcular</button>
-        <p id="shipping-cost">Frete: R$ 0,00</p>
+  <!-- Modal Login -->
+<div id="loginModal" class="modal-bg hidden" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <h2 id="modal-title">Entrar</h2>
+    <form id="loginForm">
+      <div>
+        <label>Email</label>
+        <input type="email" id="loginEmail" required>
       </div>
-      <div class="payment-methods">
-        <label for="payment-method">Método de Pagamento</label>
-        <select id="payment-method">
-          <option value="cartao">Cartão de Crédito</option>
-          <option value="boleto">Boleto Bancário</option>
-          <option value="pix">Pix</option>
-          <option value="mercadopago">Mercado Pago</option>
-        </select>
+      <div>
+        <label>Senha</label>
+        <input type="password" id="loginPassword" required>
       </div>
-      <div class="checkout-summary">
-        <p>Total: R$ <span id="cart-total">0,00</span></p>
-        <button type="button" class="btn-primary" id="complete-purchase">Finalizar Compra</button>
+      <div id="registerFields" class="hidden">
+        <label>Nome</label>
+        <input type="text" id="registerName">
       </div>
-    </div>
-  </aside>
+      <button type="submit" class="btn-primary">Continuar</button>
+    </form>
+    <p id="toggleLogin">Não tem conta? <a href="#">Cadastre-se</a></p>
+    <button id="closeLogin" class="btn-close">×</button>
+  </div>
+</div>
 
-    </nav>
+
+    <!-- Carrinho -->
+    <aside class="cart-popup" id="cart-popup" aria-hidden="true">
+      <div class="cart-header">
+        <h2>Carrinho de Compras</h2>
+        <button id="close-cart" class="btn-close" aria-label="Fechar carrinho">×</button>
+      </div>
+      <div id="cart-items" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="shipping">
+          <label for="cep">Calcular Frete</label>
+          <input type="text" id="cep" placeholder="Digite seu CEP (ex: 01450-000)" />
+          <button type="button" class="btn-secondary" id="calculate-shipping">Calcular</button>
+          <p id="shipping-cost">Frete: R$ 0,00</p>
+        </div>
+        <div class="payment-methods">
+          <label for="payment-method">Método de Pagamento</label>
+          <select id="payment-method">
+            <option value="cartao">Cartão de Crédito</option>
+            <option value="boleto">Boleto Bancário</option>
+            <option value="pix">Pix</option>
+            <option value="mercadopago">Mercado Pago</option>
+          </select>
+        </div>
+        <div class="checkout-summary">
+          <p>Total: R$ <span id="cart-total">0,00</span></p>
+          <button type="button" class="btn-primary" id="complete-purchase">Finalizar Compra</button>
+        </div>
+      </div>
+    </aside>
   </header>
 
   <main class="container py-8">
     <div id="product-detail" class="flex flex-col md:flex-row gap-8 bg-white p-6 rounded-lg shadow-sm">
-      <!-- Detalhes do produto aparecem aqui -->
-            <!-- Produto 1 -->
-        <div class="product-card">
-          <a href="produto.html?id=1" class="product-card-link">
-            <img src="images/produto1.jpg" alt="Vestido Midi Floral" />
-            <div class="product-info">
-              <h3>Vestido Midi Floral</h3>
-              <div class="price">R$ 249,90</div>
-              <div class="rating">★★★★☆ <span class="small-text">(1)</span></div>
-            </div>
-          </a>
-          <div class="actions">
-            <button class="btn-primary add-btn" data-id="1">Adicionar</button>
-            <a href="produto.html?id=1" class="btn-secondary">Ver Detalhes</a>
-          </div>
-        </div>
-
-        <!-- Produto 2 -->
-        <div class="product-card">
-          <a href="produto.html?id=2" class="product-card-link">
-            <img src="images/produto2.jpg" alt="Blazer Cropped Bege" />
-            <div class="product-info">
-              <h3>Blazer Cropped Bege</h3>
-              <div class="price">R$ 349,00</div>
-              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
-            </div>
-          </a>
-          <div class="actions">
-            <button class="btn-primary add-btn" data-id="2">Adicionar</button>
-            <a href="produto.html?id=2" class="btn-secondary">Ver Detalhes</a>
-          </div>
-        </div>
-
-        <!-- Produto 3 -->
-        <div class="product-card">
-          <a href="produto.html?id=3" class="product-card-link">
-            <img src="images/produto3.jpg" alt="Tênis Branco Minimal" />
-            <div class="product-info">
-              <h3>Tênis Branco Minimal</h3>
-              <div class="price">R$ 199,90</div>
-              <div class="rating">★★★★☆ <span class="small-text">(0)</span></div>
-            </div>
-          </a>
-          <div class="actions">
-            <button class="btn-primary add-btn" data-id="3">Adicionar</button>
-            <a href="produto.html?id=3" class="btn-secondary">Ver Detalhes</a>
-          </div>
-        </div>
-
-        <!-- Produto 4 -->
-        <div class="product-card">
-          <a href="produto.html?id=4" class="product-card-link">
-            <img src="images/produto4.jpg" alt="Bolsa Tiracolo Couro" />
-            <div class="product-info">
-              <h3>Bolsa Tiracolo Couro</h3>
-              <div class="price">R$ 429,50</div>
-              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
-            </div>
-          </a>
-          <div class="actions">
-            <button class="btn-primary add-btn" data-id="4">Adicionar</button>
-            <a href="produto.html?id=4" class="btn-secondary">Ver Detalhes</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
+      <!-- Detalhes do produto aparecem aqui (renderizados pelo script.js) -->
     </div>
-
+  </main>
 
   <footer class="main-footer">
     <div class="footer-links container">
@@ -166,22 +128,120 @@
     </div>
   </footer>
 
+  <style>.modal-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  margin-top: 10%;
+}
+</style>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const productId = Number(params.get("id"));
+      renderProductPage(productId); // usa a função do script.js
+    });
 
-<script>
- 
-    // Pega ID da URL
-    const params = new URLSearchParams(window.location.search);
+    // Sobrescreve renderProductPage para trocar o botão
+    function renderProductPage(id) {
+      const container = document.getElementById("product-detail");
+      const PRODUCTS = JSON.parse(localStorage.getItem("products")) || [];
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) {
+        container.innerHTML = "<p>Produto não encontrado.</p>";
+        return;
+      }
+
+      const galleryHTML = (product.images || []).map((img, i) => `
+        <img src="${img}" alt="${product.title}" class="product-gallery-img ${i === 0 ? "active" : ""}"
+             onclick="document.getElementById('main-product-image').src='${img}'" />
+      `).join("");
+
+      const sizeOptionsHTML = (product.sizes || []).map(s => `
+        <div class="size-option" onclick="selectSize(this)">${s}</div>
+      `).join("");
+
+      container.innerHTML = `
+        <div class="w-full md:w-1/2">
+          <img id="main-product-image" src="${product.images[0]}" alt="${product.title}" class="w-full rounded-lg mb-4" />
+          <div class="product-gallery">${galleryHTML}</div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-6">
+          <h1 class="text-3xl font-bold">${product.title}</h1>
+          <div class="text-2xl font-bold text-[#b08d57]">R$ ${product.price.toFixed(2)}</div>
+          <p>${product.description || ""}</p>
+          ${product.sizes.length ? `
+            <div><h3 class="font-semibold mb-2">Tamanhos</h3><div>${sizeOptionsHTML}</div></div>
+          ` : ""}
+          <div class="pt-4 border-t flex items-center space-x-4">
+            <div class="flex items-center">
+              <button onclick="updateQuantity(-1)" class="px-3 py-1 border rounded-l">-</button>
+              <input type="number" id="quantity" value="1" min="1" max="${product.stock}" class="w-16 text-center border-t border-b">
+              <button onclick="updateQuantity(1)" class="px-3 py-1 border rounded-r">+</button>
+            </div>
+            <!-- Botão agora segue o padrão do index -->
+            <button class="btn-primary add-btn" data-id="${product.id}">
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+const params = new URLSearchParams(window.location.search);
     const productId = Number(params.get("id"));
-
-    // Recupera produtos do localStorage (ou sampleProducts)
     const PRODUCTS = JSON.parse(localStorage.getItem("products")) || [];
+    let CART = JSON.parse(localStorage.getItem("cart")) || [];
 
-     document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const productId = Number(params.get("id"));
-    renderProductPage(productId); // usa a função que já está no script.js
-  });
+    function saveState() {
+      localStorage.setItem("cart", JSON.stringify(CART));
+    }
+
+    function updateBadge() {
+      const badge = document.getElementById("cart-badge");
+      badge.textContent = CART.reduce((s, i) => s + i.qty, 0);
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cart-items");
+      container.innerHTML = "";
+      if (CART.length === 0) {
+        container.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        return;
+      }
+
+      let subtotal = 0;
+      CART.forEach((item, idx) => {
+        subtotal += item.price * item.qty;
+        const el = document.createElement("div");
+        el.className = "cart-item";
+        el.innerHTML = `
+          <div>
+            <p>${item.title}</p>
+            ${item.size ? `<p>Tamanho: ${item.size}</p>` : ""}
+            <p>R$ ${item.price.toFixed(2)} x ${item.qty}</p>
+            <div>
+              <button data-action="dec" data-idx="${idx}">-</button>
+              <span style="margin:0 8px">${item.qty}</span>
+              <button data-action="inc" data-idx="${idx}">+</button>
+            </div>
+          </div>
+          <div>
+            <button data-action="remove" data-idx="${idx}">Remover</button>
+          </div>
+        `;
+        container.appendChild(el);
+      });
+
+      document.getElementById("cart-total").textContent = subtotal.toFixed(2);
+    }
 
     function renderProductDetails(id) {
       const product = PRODUCTS.find(p => p.id === id);
@@ -226,22 +286,72 @@
       `;
     }
 
-    renderProductDetails(productId);
- 
+    function addToCartById(id) {
+      const pid = Number(id);
+      const p = PRODUCTS.find(x => x.id === pid);
+      if(!p) { alert('Produto não encontrado'); return; }
 
-  function selectSize(el) {
-    document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
-    el.classList.add("selected");
-  }
+      // 👉 Captura o tamanho escolhido
+      let selectedSize = null;
+      const selectedEl = document.querySelector(".size-option.selected");
+      if (selectedEl) {
+        selectedSize = selectedEl.textContent.trim();
+      }
 
-  function updateQuantity(change) {
-    const input = document.getElementById("quantity");
-    let newValue = parseInt(input.value) + change;
-    if (newValue < 1) newValue = 1;
-    if (newValue > parseInt(input.max)) newValue = parseInt(input.max);
-    input.value = newValue;
-  }
-</script>
+      // ⚠️ Se o produto tiver tamanhos e nenhum foi selecionado
+      if (p.sizes.length && !selectedSize) {
+        alert("Por favor, selecione um tamanho antes de adicionar ao carrinho.");
+        return;
+      }
 
+      // Verifica se já existe no carrinho o mesmo produto + mesmo tamanho
+      const existing = CART.find(i => i.id === pid && i.size === selectedSize);
+      if(existing) {
+        if(existing.qty < (p.stock || 999)) existing.qty++;
+        else { alert('Estoque insuficiente'); return; }
+      } else {
+        CART.push({
+          id: p.id,
+          title: p.title,
+          price: p.price,
+          qty: 1,
+          img: (p.images && p.images[0]) || '',
+          size: selectedSize // 👈 salva tamanho
+        });
+      }
+
+      saveState();
+      renderCart();
+      updateBadge();
+
+      const cartPopup = document.getElementById("cart-popup");
+      if(cartPopup) {
+        cartPopup.classList.add('active');
+        cartPopup.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function selectSize(el) {
+      document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
+      el.classList.add("selected");
+    }
+
+    function updateQuantity(change) {
+      const input = document.getElementById("quantity");
+      let newValue = parseInt(input.value) + change;
+      if (newValue < 1) newValue = 1;
+      if (newValue > parseInt(input.max)) newValue = parseInt(input.max);
+      input.value = newValue;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProductDetails(productId);
+      renderCart();
+      updateBadge();
+    });
+
+    
+    
+  </script>
 </body>
 </html>
