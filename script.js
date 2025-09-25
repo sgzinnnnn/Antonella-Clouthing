@@ -363,7 +363,6 @@ function renderProducts(list = PRODUCTS) {
             <div style="margin-top:16px">
               <h4>Avaliações</h4>
               <div id="reviewsArea">${(p.reviews||[]).length ? p.reviews.map(r=>`<div style="padding:8px 0;border-top:1px dashed #eee"><strong>${r.name}</strong> · ${'★'.repeat(r.stars)}<div style="font-size:0.95rem;color:#666">${r.text}</div></div>`).join('') : '<div class="small-text">Seja o primeiro a avaliar</div>'}</div>
-              <textarea id="reviewText" placeholder="Deixe sua avaliação" style="width:100%;margin-top:8px;padding:8px;border-radius:6px;border:1px solid #ddd"></textarea>
               <div style="margin-top:8px;display:flex;gap:8px"><select id="reviewStars"><option value="5">5 estrelas</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select><button id="sendReview" class="btn-primary">Enviar</button></div>
             </div>
           </div>
@@ -521,7 +520,6 @@ function renderProductPage(id) {
           <option value="2">2</option>
           <option value="1">1</option>
         </select>
-        <button class="btn-secondary" onclick="addReview(${product.id})">Enviar Avaliação</button>
       </div>
     </div>
   `;
@@ -539,3 +537,73 @@ function addReview(id) {
   saveState();
   renderProductPage(id);
 }
+
+
+//produto js//
+
+ document.addEventListener("DOMContentLoaded", () => {
+    // Pega ID da URL
+    const params = new URLSearchParams(window.location.search);
+    const productId = Number(params.get("id"));
+
+    // Recupera produtos do localStorage (ou sampleProducts)
+    const PRODUCTS = JSON.parse(localStorage.getItem("products")) || [];
+
+    function renderProductDetails(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) {
+        document.getElementById("product-detail").innerHTML = "<p>Produto não encontrado.</p>";
+        return;
+      }
+
+      const galleryHTML = product.images.map((img, i) => `
+        <img src="${img}" alt="${product.title}" 
+             class="product-gallery-img ${i === 0 ? "active" : ""}"
+             onclick="document.getElementById('main-product-image').src='${img}'" />
+      `).join("");
+
+      const sizeOptionsHTML = product.sizes.map(s => `
+        <div class="size-option" onclick="selectSize(this)">${s}</div>
+      `).join("");
+
+      document.getElementById("product-detail").innerHTML = `
+        <div class="w-full md:w-1/2">
+          <img id="main-product-image" src="${product.images[0]}" alt="${product.title}" class="w-full rounded-lg mb-4" />
+          <div class="product-gallery">${galleryHTML}</div>
+        </div>
+        <div class="w-full md:w-1/2 space-y-6">
+          <h1 class="text-3xl font-bold">${product.title}</h1>
+          <div class="text-2xl font-bold text-[#b08d57]">R$ ${product.price.toFixed(2)}</div>
+          <p>${product.description || ""}</p>
+          ${product.sizes.length ? `
+            <div><h3 class="font-semibold mb-2">Tamanhos</h3><div>${sizeOptionsHTML}</div></div>
+          ` : ""}
+          <div class="pt-4 border-t flex items-center space-x-4">
+            <div class="flex items-center">
+              <button onclick="updateQuantity(-1)" class="px-3 py-1 border rounded-l">-</button>
+              <input type="number" id="quantity" value="1" min="1" max="${product.stock}" class="w-16 text-center border-t border-b">
+              <button onclick="updateQuantity(1)" class="px-3 py-1 border rounded-r">+</button>
+            </div>
+            <button onclick="addToCartById(${product.id})" class="bg-[#b08d57] text-white px-6 py-2 rounded hover:bg-[#9a7b4d] transition">
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    renderProductDetails(productId);
+  });
+
+  function selectSize(el) {
+    document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
+    el.classList.add("selected");
+  }
+
+  function updateQuantity(change) {
+    const input = document.getElementById("quantity");
+    let newValue = parseInt(input.value) + change;
+    if (newValue < 1) newValue = 1;
+    if (newValue > parseInt(input.max)) newValue = parseInt(input.max);
+    input.value = newValue;
+  }

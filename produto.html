@@ -6,81 +6,128 @@
   <title>Detalhes do Produto | Antonella Clothing</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .color-option {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin-right: 10px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-    .color-option.selected { border-color: #000; }
-    .size-option {
-      display: inline-block;
-      padding: 8px 12px;
-      margin-right: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .size-option.selected {
-      background-color: #b08d57;
-      color: white;
-      border-color: #b08d57;
-    }
-    .product-gallery { display: flex; gap: 10px; margin-top: 15px; }
-    .product-gallery img {
-      width: 60px; height: 60px; object-fit: cover;
-      cursor: pointer; border: 1px solid #ddd;
-    }
-    .product-gallery img.active { border-color: #b08d57; }
-    .review-item { border-bottom: 1px solid #eee; padding: 15px 0; }
-    .review-stars { color: #b08d57; margin-bottom: 5px; }
-  </style>
 </head>
 <body class="bg-gray-50">
   <header class="main-header">
     <nav class="navbar container">
-      <div class="logo">Antonella Clothing</div>
-      <a href="index.html" class="text-white hover:text-gray-200">← Voltar para a Loja</a>
-      
+ <a href="index.html" class="logo">Antonella Clothing</a>
+         <div class="nav-icons">
+        <button id="search-toggle" aria-label="Buscar">🔍</button>
+        <button id="user-btn" aria-label="Perfil">👤</button>
+        <button id="cart-icon" aria-label="Carrinho">🛒 <span id="cart-badge" class="badge">0</span></button>
+      </div>
+    </nav>
+
+        <!-- Barra de busca -->
+    <div class="container search-row" id="searchRow">
+      <input id="globalSearch" type="text" placeholder="Buscar: vestido, blazer, bolsa..." autocomplete="off"/>
+      <div id="suggestions" class="suggestions hidden"></div>
+    </div>
+
+       <!-- Carrinho -->
+  <aside class="cart-popup" id="cart-popup" aria-hidden="true">
+    <div class="cart-header">
+      <h2>Carrinho de Compras</h2>
+      <button id="close-cart" class="btn-close" aria-label="Fechar carrinho">×</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="shipping">
+        <label for="cep">Calcular Frete</label>
+        <input type="text" id="cep" placeholder="Digite seu CEP (ex: 01450-000)" />
+        <button type="button" class="btn-secondary" id="calculate-shipping">Calcular</button>
+        <p id="shipping-cost">Frete: R$ 0,00</p>
+      </div>
+      <div class="payment-methods">
+        <label for="payment-method">Método de Pagamento</label>
+        <select id="payment-method">
+          <option value="cartao">Cartão de Crédito</option>
+          <option value="boleto">Boleto Bancário</option>
+          <option value="pix">Pix</option>
+          <option value="mercadopago">Mercado Pago</option>
+        </select>
+      </div>
+      <div class="checkout-summary">
+        <p>Total: R$ <span id="cart-total">0,00</span></p>
+        <button type="button" class="btn-primary" id="complete-purchase">Finalizar Compra</button>
+      </div>
+    </div>
+  </aside>
+
     </nav>
   </header>
 
   <main class="container py-8">
     <div id="product-detail" class="flex flex-col md:flex-row gap-8 bg-white p-6 rounded-lg shadow-sm">
       <!-- Detalhes do produto aparecem aqui -->
+            <!-- Produto 1 -->
+        <div class="product-card">
+          <a href="produto.html?id=1" class="product-card-link">
+            <img src="images/produto1.jpg" alt="Vestido Midi Floral" />
+            <div class="product-info">
+              <h3>Vestido Midi Floral</h3>
+              <div class="price">R$ 249,90</div>
+              <div class="rating">★★★★☆ <span class="small-text">(1)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="1">Adicionar</button>
+            <a href="produto.html?id=1" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="product-card">
+          <a href="produto.html?id=2" class="product-card-link">
+            <img src="images/produto2.jpg" alt="Blazer Cropped Bege" />
+            <div class="product-info">
+              <h3>Blazer Cropped Bege</h3>
+              <div class="price">R$ 349,00</div>
+              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="2">Adicionar</button>
+            <a href="produto.html?id=2" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="product-card">
+          <a href="produto.html?id=3" class="product-card-link">
+            <img src="images/produto3.jpg" alt="Tênis Branco Minimal" />
+            <div class="product-info">
+              <h3>Tênis Branco Minimal</h3>
+              <div class="price">R$ 199,90</div>
+              <div class="rating">★★★★☆ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="3">Adicionar</button>
+            <a href="produto.html?id=3" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+
+        <!-- Produto 4 -->
+        <div class="product-card">
+          <a href="produto.html?id=4" class="product-card-link">
+            <img src="images/produto4.jpg" alt="Bolsa Tiracolo Couro" />
+            <div class="product-info">
+              <h3>Bolsa Tiracolo Couro</h3>
+              <div class="price">R$ 429,50</div>
+              <div class="rating">★★★★★ <span class="small-text">(0)</span></div>
+            </div>
+          </a>
+          <div class="actions">
+            <button class="btn-primary add-btn" data-id="4">Adicionar</button>
+            <a href="produto.html?id=4" class="btn-secondary">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     </div>
 
-    <section class="mt-12 bg-white p-6 rounded-lg shadow-sm">
-      <h2 class="text-2xl font-bold mb-6">Avaliações</h2>
-      <div id="reviews-list" class="mb-8"></div>
-      
-      <h3 class="text-xl font-semibold mb-4">Deixe sua avaliação</h3>
-      <form id="review-form" class="space-y-4">
-        <div>
-          <label for="review-name" class="block mb-2">Seu nome</label>
-          <input type="text" id="review-name" class="w-full p-2 border rounded" required>
-        </div>
-        <div>
-          <label for="review-rating" class="block mb-2">Avaliação</label>
-          <select id="review-rating" class="p-2 border rounded" required>
-            <option value="5">★★★★★</option>
-            <option value="4">★★★★☆</option>
-            <option value="3">★★★☆☆</option>
-            <option value="2">★★☆☆☆</option>
-            <option value="1">★☆☆☆☆</option>
-          </select>
-        </div>
-        <div>
-          <label for="review-text" class="block mb-2">Comentário</label>
-          <textarea id="review-text" rows="4" class="w-full p-2 border rounded" required></textarea>
-        </div>
-        <button type="submit" class="bg-[#b08d57] text-white px-6 py-2 rounded hover:bg-[#9a7b4d] transition">Enviar Avaliação</button>
-      </form>
-    </section>
-  </main>
 
   <footer class="main-footer">
     <div class="footer-links container">
@@ -120,15 +167,21 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="script.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+ 
     // Pega ID da URL
     const params = new URLSearchParams(window.location.search);
     const productId = Number(params.get("id"));
 
     // Recupera produtos do localStorage (ou sampleProducts)
     const PRODUCTS = JSON.parse(localStorage.getItem("products")) || [];
+
+     document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const productId = Number(params.get("id"));
+    renderProductPage(productId); // usa a função que já está no script.js
+  });
 
     function renderProductDetails(id) {
       const product = PRODUCTS.find(p => p.id === id);
@@ -174,7 +227,7 @@
     }
 
     renderProductDetails(productId);
-  });
+ 
 
   function selectSize(el) {
     document.querySelectorAll(".size-option").forEach(opt => opt.classList.remove("selected"));
