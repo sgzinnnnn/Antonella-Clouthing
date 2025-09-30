@@ -26,10 +26,12 @@
     </nav>
 
     <!-- Barra de busca -->
-    <div class="container search-row" id="searchRow">
-      <input id="globalSearch" type="text" placeholder="Buscar: vestido, blazer, bolsa..." autocomplete="off"/>
-      <div id="suggestions" class="suggestions hidden"></div>
-    </div>
+     <div class="search-container">
+  <div class="search-row" id="searchRow">
+    <input type="text" id="globalSearch" placeholder="Buscar produto..." />
+  </div>
+  <div id="suggestions" class="suggestions hidden"></div>
+</div>
 
     <!-- Banner Principal -->
     <div class="hero-section" role="img" aria-label="Banner principal - coleção">
@@ -104,32 +106,34 @@
     <section id="produtos" class="products-section">
       <h2>Produtos</h2>
 
-      <div class="controls">
-        <div class="filters">
-          <button class="filter-btn" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="roupas">Roupas</button>
-          <button class="filter-btn" data-filter="calcados">Calçados</button>
-          <button class="filter-btn" data-filter="acessorios">Acessórios</button>
-          <button class="filter-btn" data-filter="acessorios">Masculino</button>
-          <button class="filter-btn" data-filter="acessorios">Feminino</button>
-          <select id="sizeFilter">
-            <option value="">Tamanho</option>
-            <option>PP</option><option>P</option><option>M</option><option>G</option><option>GG</option>
-          </select>
-          <select id="colorFilter">
-            <option value="">Cor</option>
-            <option>Floral</option><option>Bege</option><option>Branco</option><option>Rosa</option><option>Caramelo</option>
-          </select>
-        </div>
-        <div class="sort">
-          <label for="sortSelect">Ordenar</label>
-          <select id="sortSelect">
-            <option value="default">Relevância</option>
-            <option value="price-asc">Preço ↑</option>
-            <option value="price-desc">Preço ↓</option>
-          </select>
-        </div>
-      </div>
+     <div class="filters">
+  <button class="filter-btn active" data-filter="all">Todos</button>
+  <button class="filter-btn" data-filter="roupas">Roupas</button>
+  <button class="filter-btn" data-filter="calcados">Calçados</button>
+  <button class="filter-btn" data-filter="acessorios">Acessórios</button>
+
+  <!-- Filtro por tamanho de roupas -->
+  <select id="clothingSizeFilter">
+    <option value="">Tamanho (Roupas)</option>
+    <option>PP</option><option>P</option><option>M</option><option>G</option><option>GG</option>
+  </select>
+
+  <!-- Filtro por numeração de calçados -->
+  <select id="shoeSizeFilter">
+    <option value="">Numeração (Calçados)</option>
+    <option>34</option><option>35</option><option>36</option><option>37</option>
+    <option>38</option><option>39</option><option>40</option><option>41</option>
+    <option>42</option><option>43</option>
+  </select>
+
+  <!-- Ordenação -->
+  <select id="sortSelect">
+    <option value="">Ordenar</option>
+    <option value="price-asc">Menor preço</option>
+    <option value="price-desc">Maior preço</option>
+  </select>
+</div>
+
 
       <div id="productsGrid" class="products-grid">
         <!-- Produto 1 -->
@@ -228,7 +232,7 @@
         <div class="social-icons">
           <a href="#" aria-label="Instagram">Instagram</a>
           <a href="#" aria-label="Pinterest">Pinterest</a>
-          <a href="https://wa.me/5516992226122" aria-label="WhatsApp">WhatsApp</a>
+          <a href="https://wa.me/5516992226122" aria-label="Whats">WhatsApp</a>
         </div>
       </div>
     </div>
